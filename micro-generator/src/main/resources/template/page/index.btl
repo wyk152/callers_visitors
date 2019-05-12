@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>${entity.businessName}管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="${entity.clazzName}.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="${entity.clazzName}TableToolbar" role="group">
+                            @if(shiro.hasPermission("/${entity.lowerCaseClassName}/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="${entity.clazzName}.addPage()"/>
+                            @}
+                            @if(shiro.hasPermission("/${entity.lowerCaseClassName}/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="${entity.clazzName}.editPage()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/${entity.lowerCaseClassName}/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="${entity.clazzName}.deletePage()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/${entity.lowerCaseClassName}/export")){
+                                <#button name="导出" icon="fa-export" clickFun="${entity.clazzName}.exportPage()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="${entity.clazzName}Table"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="\${ctxPath}/static/modular/business/${entity.lowerCaseClassName}/index.js"></script>
+@}

@@ -1,0 +1,86 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/doublebox-boostrap/css/font-awesome.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<link href="${ctxPath}/static/js/plugins/doublebox-boostrap/css/doublebox-bootstrap.css" rel="stylesheet"/>
+<style>
+    .ue-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 3%;
+        padding: 20px 40px;
+        border: 1px solid #ddd;
+        background: #fff;
+    }
+</style>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <input type="hidden" name="id" id="id" value="${id}">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="ue-container">
+                        <select multiple="multiple" size="15" name="doublebox" class="demo">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row btn-group-m-t text-center">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CompanyInfoDlg.addSubmitNode()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CompanyInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/merchant/page_info.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/doublebox-boostrap/js/doublebox-bootstrap.js"></script>
+<script type="text/javascript">
+    var doublebox = null;
+    $(function () {
+        var noSelected = '${unselected}';
+        noSelected = JSON.parse(noSelected);
+        var selected = '${selected}';
+        selected = JSON.parse(selected);
+        doublebox = $('.demo').doublebox({
+            nonSelectedListLabel: '未选账号',
+            selectedListLabel: '已选账号',
+            preserveSelectionOnMove: 'moved',
+            moveOnSelect: false,
+            nonSelectedList:noSelected,
+            selectedList:selected,
+            optionValue:"id",
+            optionText:"name",
+            doubleMove:true,
+        });
+    })
+    /**
+     * 提交添加
+     */
+    CompanyInfoDlg.addSubmitNode = function() {
+        //提交信息
+        var selectedOptions = doublebox.getSelectedOptions();
+        var id = $("#id").val();
+        $.ajax({
+            url:  Feng.ctxPath + "/merchant/assign" ,
+            type: 'POST',
+            data: {"userIds":selectedOptions,"id":id},
+            async: false,
+            success: function (returndata) {
+                if(returndata.code == 200){
+                    Feng.success("分配成功!");
+                    window.parent.Company.table.refresh();
+                    CompanyInfoDlg.close();
+                }else{
+                    Feng.error("分配失败!错误："+returndata.message);
+                }
+            },
+            error: function (returndata) {
+                Feng.error("分配失败!");
+            }
+        });
+    }
+
+</script>
+@}

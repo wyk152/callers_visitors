@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-generator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-persistence" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service" charset="UTF-8" />
+  </component>
+</project>

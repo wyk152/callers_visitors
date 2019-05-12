@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/micro-admin/micro-admin.iml" filepath="$PROJECT_DIR$/micro-admin/micro-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-core/micro-core.iml" filepath="$PROJECT_DIR$/micro-core/micro-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-generator/micro-generator.iml" filepath="$PROJECT_DIR$/micro-generator/micro-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-persistence/micro-persistence.iml" filepath="$PROJECT_DIR$/micro-persistence/micro-persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-rest/micro-rest.iml" filepath="$PROJECT_DIR$/micro-rest/micro-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service/micro-service.iml" filepath="$PROJECT_DIR$/micro-service/micro-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-visitor.iml" filepath="$PROJECT_DIR$/micro-visitor.iml" />
+    </modules>
+  </component>
+</project>

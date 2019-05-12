@@ -1,0 +1,102 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <form id="submitForm">
+                <input type="hidden" id="id" name="id" value="${item.id}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">微信昵称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="nickName" name="nickName" type="text" value="${item.nickName}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="name" name="name" type="text" value="${item.name}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="phone" name="phone" type="text" value="${item.phone}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">部门名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="deptName" name="deptName" type="text" value="${item.deptName}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">公司名称</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="companyName" name="companyName" type="text" value="${item.companyName}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">公司地址</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="companyAddress" name="companyAddress" type="text" value="${item.companyAddress}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">职务</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="dutyName" name="dutyName" type="text" value="${item.dutyName}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">身份证号</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="cardNo" name="cardNo" type="text" value="${item.cardNo}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">车牌号</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="carNo" name="carNo" type="text" value="${item.carNo}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">商家编号</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="areacode" name="areacode" type="text" value="${item.areacode}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账号类型</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="type" name="type" type="text" value="${item.type}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">微信头像</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="avatarUrl" name="avatarUrl" type="text" value="${item.avatarUrl}">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </form>
+            <div class="row btn-group-m-t text-center">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MemberInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MemberInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/member/page_info.js"></script>
+@}

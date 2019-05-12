@@ -1,0 +1,5 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.easymicro.core.base.controller.GlobalController,\
+com.easymicro.core.config.DefaultProperties,\
+com.easymicro.core.config.DefaultWebConfig

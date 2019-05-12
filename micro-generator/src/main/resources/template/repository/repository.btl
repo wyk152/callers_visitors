@@ -1,0 +1,15 @@
+package ${dao.basePackage};
+
+<% for(import in dao.imports!){ %>
+import ${import};
+<% } %>
+
+/**************************************
+ * ${entity.businessName}DAO接口
+ *@author LinYingQiang
+ *@date ${tool.currentTime()}
+ *@qq 961410800
+ *
+************************************/
+public interface ${entity.clazzName}Repository extends CustomRepository<${entity.clazzName},Long> {
+}

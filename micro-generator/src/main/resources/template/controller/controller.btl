@@ -1,0 +1,111 @@
+package ${controller.basePackage};
+
+<% for(import in controller.imports!){ %>
+import ${import};
+<% } %>
+
+/**************************************
+ * ${entity.businessName}控制器
+ *@author LinYingQiang
+ *@date 2018-08-12 18:18
+ *@qq 961410800
+ *
+ ************************************/
+@Controller
+@RequestMapping("/${entity.lowerCaseClassName}")
+public class ${entity.clazzName}Controller extends BaseController {
+
+    private static String PREFIX = "/business/${entity.lowerCaseClassName}/";
+
+
+    @Autowired
+    private ${entity.clazzName}Service ${entity.lowerCaseClassName}Service;
+
+
+    /**
+     * 跳转到${entity.businessName}首页面
+     */
+    @RequestMapping("")
+    public String index() {
+        return PREFIX + "index.html";
+    }
+
+    /**
+     * 跳转到${entity.businessName}添加页面
+     */
+    @RequestMapping(value = "/add_page")
+    public String addPage() {
+        return PREFIX + "add_page.html";
+    }
+
+    /**
+     * 跳转到${entity.businessName}编辑页面
+     */
+    @RequestMapping(value = "/edit_page/{id}")
+    public String editPage(@PathVariable Long id, Model model) {
+        ${entity.clazzName} item = this.${entity.lowerCaseClassName}Service.find(id);
+        model.addAttribute("item", item);
+        return PREFIX + "edit_page.html";
+    }
+
+    /**
+     * 查询${entity.businessName}列表
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public Object list(String condition) {
+        Pageable page = PageFactory.defaultPage();
+        Page<${entity.clazzName}> p1 = ${entity.lowerCaseClassName}Service.findAll((Specification<${entity.clazzName}>) (root,query,builder)->{
+            return null;
+        },page);
+        return super.packForBT(p1);
+    }
+
+    /**
+     * 新增${entity.businessName}
+     */
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public Tip add(${entity.clazzName} item) {
+        ${entity.lowerCaseClassName}Service.insert(item);
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * 修改${entity.businessName}
+     */
+    @RequestMapping(value = "/edit")
+    @ResponseBody
+    public Tip edit(${entity.clazzName} item) {
+        ${entity.lowerCaseClassName}Service.updateSkipNull(item);
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * 删除${entity.businessName}
+     */
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(@RequestParam String ids) {
+        Iterable<String> splitIds = Splitter.on(",").split(ids);
+        Iterator<String> iterator = splitIds.iterator();
+        while (iterator.hasNext()) {
+            String id = iterator.next();
+            if (NumberUtils.isCreatable(id)) {
+                ${entity.lowerCaseClassName}Service.delete(Long.valueOf(id));
+            }
+        }
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * ${entity.businessName}excel导出
+     */
+    @RequestMapping(value = "export")
+    public ResponseEntity<byte[]> export() {
+
+
+        return null;
+    }
+
+}

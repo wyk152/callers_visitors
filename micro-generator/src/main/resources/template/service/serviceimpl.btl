@@ -1,0 +1,16 @@
+package ${serviceImpl.basePackage};
+
+<% for(import in serviceImpl.imports!){ %>
+import ${import};
+<% } %>
+
+/**************************************
+ * ${entity.businessName}Service实现类
+ *@author LinYingQiang
+ *@date 2018-08-12 17:17
+ *@qq 961410800
+ *
+ ************************************/
+@Service
+public class ${entity.clazzName}ServiceImpl extends ServiceImpl<${entity.clazzName}Repository,${entity.clazzName},Long> implements ${entity.clazzName}Service {
+}

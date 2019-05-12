@@ -1,0 +1,110 @@
+/**
+ * ${entity.businessName}初始化
+ */
+var ${entity.clazzName} = {
+    id: "${entity.clazzName}Table",	//表格id
+    seItem: null,		//选中的条目
+    seItems: '',//多个选中条目
+    table: null,
+    layerIndex: -1
+};
+
+/**
+ * 初始化表格的列
+ */
+${entity.clazzName}.initColumn = function () {
+    return [
+        {field: 'selectItem', radio: false},
+        <% for(item in entity.fieldModels!){ %>
+        <% if(itemLP.last != true){ %>
+        {title: '${item.cnName}', field: '${item.enName}', visible: true, align: 'center', valign: 'middle'},
+        <% }else{ %>
+        {title: '${item.cnName}', field: '${item.enName}', visible: true, align: 'center', valign: 'middle'}
+        <% }} %>
+    ];
+};
+
+/**
+ * 检查是否选中
+ */
+${entity.clazzName}.check = function () {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if(selected.length == 0){
+        Feng.info("请先选中表格中的某一记录！");
+        return false;
+    }else{
+        ${entity.clazzName}.seItem = selected[0];
+        ${entity.clazzName}.seItems = ""; //清空数据
+        for(var i = 0 ; i < selected.length; i++){
+           ${entity.clazzName}.seItems += selected[i].id + ",";
+        }
+        return true;
+    }
+};
+
+/**
+ * 点击添加${entity.businessName}
+ */
+${entity.clazzName}.addPage = function () {
+    var index = layer.open({
+        type: 2,
+        title: '添加${entity.businessName}',
+        area: ['800px', '420px'], //宽高
+        fix: false, //不固定
+        maxmin: true,
+        content: Feng.ctxPath + '/${entity.lowerCaseClassName}/add_page'
+    });
+    this.layerIndex = index;
+};
+
+/**
+ * 编辑${entity.businessName}
+ */
+${entity.clazzName}.editPage = function () {
+    if (this.check()) {
+        if($('#' + this.id).bootstrapTable('getSelections').length > 1){
+            return Feng.error("只能选中一条记录！");
+        }
+        var index = layer.open({
+            type: 2,
+            title: '${entity.businessName}详情',
+            area: ['800px', '420px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/${entity.lowerCaseClassName}/edit_page/' + ${entity.clazzName}.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
+
+/**
+ * 删除${entity.businessName}
+ */
+${entity.clazzName}.deletePage = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/${entity.lowerCaseClassName}/delete", function (data) {
+            Feng.success("删除成功!");
+            ${entity.clazzName}.table.refresh();
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("ids",${entity.clazzName}.seItems);
+        ajax.start();
+    }
+};
+
+/**
+ * 查询${entity.businessName}列表
+ */
+${entity.clazzName}.search = function () {
+    var queryData = {};
+    queryData['condition'] = $("#condition").val();
+    ${entity.clazzName}.table.refresh({query: queryData});
+};
+
+$(function () {
+    var defaultColunms = ${entity.clazzName}.initColumn();
+    var table = new BSTable(${entity.clazzName}.id, "/${entity.lowerCaseClassName}/list", defaultColunms);
+    table.setPaginationType("server");
+    ${entity.clazzName}.table = table.init();
+});

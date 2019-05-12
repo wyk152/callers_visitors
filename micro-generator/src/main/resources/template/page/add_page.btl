@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <form id="submitForm">
+            <% for(var i=0;i < entity.fieldModels.~size;i++){ %>
+              <% if(entity.fieldModels[i].fieldType == 'ID') {%>
+              <% } else if(entity.fieldModels[i].fieldType == 'TEXT'){%>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">${entity.fieldModels[i].cnName}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" autocomplete="off" id="${entity.fieldModels[i].enName}" name="${entity.fieldModels[i].enName}" type="text">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+              <% } else if(entity.fieldModels[i].fieldType == 'img'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'file'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'richtext'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'select'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'createtime'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'updatetime'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'version'){%>
+
+              <% } else if(entity.fieldModels[i].fieldType == 'other'){%>
+
+              <% } %>
+            <% } %>
+            </form>
+            <div class="row btn-group-m-t text-center">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="${entity.clazzName}InfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="${entity.clazzName}InfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="\${ctxPath}/static/modular/business/${entity.lowerCaseClassName}/page_info.js"></script>
+@}

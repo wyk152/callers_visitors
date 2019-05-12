@@ -1,0 +1,15 @@
+package ${service.basePackage};
+
+<% for(import in service.imports!){ %>
+import ${import};
+<% } %>
+
+/**************************************
+ * ${entity.businessName}Service接口
+ *@author LinYingQiang
+ *@date 2018-08-12 16:16
+ *@qq 961410800
+ *
+ ************************************/
+public interface ${entity.clazzName}Service extends IService<${entity.clazzName},Long> {
+}
